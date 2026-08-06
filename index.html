@@ -1,0 +1,254 @@
+<!doctype html>
+<!--
+  ============================================================
+  EDITING GUIDE — Mohit Kumar · Researcher Site
+  Every scaffolded spot carries a data-placeholder attribute.
+  Open the site with  index.html?edit=1  to see them outlined.
+  Full instructions: README.md
+  1. app.js  →  EMAIL constant (top) + PUBLICATIONS array (two scaffold rows to replace)
+  2. index.html → your title/role/affiliation, thesis, focus bullets, socials
+  3. assets/CV_Mohit_Kumar.pdf  →  overwrite with your academic CV
+  4. assets/portrait.jpg  →  add a photo (a serif "MK" monogram shows until then)
+  ============================================================
+-->
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mohit Kumar — Researcher in Healthcare IT, PACS & Networking</title>
+<meta name="description" content="Research, publications, and contact for Mohit Kumar — work at the intersection of Healthcare IT, PACS, networking, and imaging science." />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script>
+  /* theme init — runs before paint to prevent flash-of-wrong-theme */
+  (function () {
+    try {
+      var q = new URLSearchParams(window.location.search).get('theme'); /* ?theme=light|dark preview override */
+      var t = localStorage.getItem('mk-theme');
+      if (q === 'light' || q === 'dark') t = q;
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.content = t === 'dark' ? '#0f172a' : '#f8fafc';
+      var g = parseFloat(localStorage.getItem('mk-glass'));
+      if (!isNaN(g) && g >= 0 && g <= 100) {
+        document.documentElement.style.setProperty('--glass-alpha', (g / 100).toFixed(2));
+      }
+    } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+  })();
+</script>
+</head>
+<body>
+<!-- animated aurora — the light behind the frosted glass -->
+<div class="aurora" aria-hidden="true">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+  <span class="orb orb-d"></span>
+</div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="#top" aria-label="Mohit Kumar — home">
+      <span class="brand-mark">MK</span>
+      <span class="brand-name">Mohit&nbsp;Kumar</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn ghost" href="assets/CV_Mohit_Kumar.pdf" download data-placeholder>CV</a>
+      <button class="glass-toggle" id="glassToggle" aria-label="Open appearance settings" aria-expanded="false" aria-controls="glassPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M2 14h4M10 8h4M18 16h4"/></svg>
+      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ APPEARANCE POPOVER (transparency slider) ============ -->
+<div class="glass-panel" id="glassPanel">
+  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M2 14h4M10 8h4M18 16h4"/></svg>Appearance</h4>
+  <div class="glass-row">
+    <div class="glass-row-head">
+      <label for="glassRange">Transparency</label>
+      <span class="glass-readout" id="glassReadout">55%</span>
+    </div>
+    <input type="range" class="glass-range" id="glassRange" min="10" max="95" value="55" step="1" aria-label="Glass transparency" />
+    <p class="glass-hint">Lower is more transparent frosted glass · higher is more opaque.</p>
+  </div>
+  <button type="button" class="glass-reset" id="glassReset">Reset to default</button>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO / PROFILE (bento: 8 + 4) ============ -->
+  <section class="hero" id="top">
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
+    <div class="container bento">
+      <article class="card hero-profile g8" aria-labelledby="hero-h">
+        <span class="kicker">Research · AI in Medicine · Imaging Informatics · PACS</span>
+        <h1 id="hero-h">Where <span class="accent">AI</span> meets interventional medicine and imaging</h1>
+        <p class="lede">I research how artificial intelligence is making interventional procedures safer and more precise — and how imaging systems, PACS, and the networks beneath them must evolve to carry that intelligence reliably.</p>
+        <div class="hero-actions">
+          <a class="btn primary big" href="assets/CV_Mohit_Kumar.pdf" download><span class="ic">↓</span> Download CV</a>
+          <a class="btn secondary big" data-mail="email" href="#contact">Get in touch</a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">AI in Medicine</span>
+          <span class="tag">Interventional</span>
+          <span class="tag">Medical Imaging</span>
+          <span class="tag">PACS / DICOM</span>
+          <span class="tag">Healthcare IT</span>
+        </div>
+      </article>
+
+      <aside class="card hero-identity g4">
+        <div class="portrait" data-placeholder>MK</div>
+        <h2>Mohit Kumar</h2>
+        <p class="role">Healthcare IT · PACS · Imaging Informatics</p>
+        <p class="affil">Independent researcher</p>
+        <div class="socials">
+          <a class="social" href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ" aria-label="Google Scholar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></a>
+          <a class="social" href="https://orcid.org/0009-0006-4312-403X" aria-label="ORCID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 16V8"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="16" r="1.2" fill="currentColor"/><circle cx="12" cy="8" r="1.2" fill="currentColor"/></svg></a>
+          <a class="social" href="https://github.com/greyentity101" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+          <a class="social" href="https://linkedin.com/in/greyentity101" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ QUICK STATS (data-driven — filled by app.js) ============ -->
+  <section class="stats" aria-label="Quick statistics">
+    <div class="container bento stats-bento" id="statsBand" aria-live="polite"></div>
+  </section>
+
+  <!-- ============ RESEARCH FOCUS (bento: 7 + 5) ============ -->
+  <section class="focus" id="research">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Research Focus</span>
+        <h2>Where the work sits</h2>
+        <p>An honest, jargon-light map of the problems I care about.</p>
+      </div>
+      <div class="bento">
+        <article class="card focus-main g7">
+          <p class="thesis">My work sits at the junction of <strong>applied AI</strong> and <strong>clinical imaging</strong>: how machine learning sharpens interventional decisions, and how the PACS/DICOM infrastructure beneath modern imaging must keep pace.</p>
+          <ul class="focus-list">
+            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>AI in interventional medicine</strong> — predictive risk modeling, imaging guidance, and robotic-assisted precision.</p></li>
+            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Imaging informatics</strong> — DICOM, PACS, and HL7/FHIR integration across mixed-vendor estates.</p></li>
+            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Applied ML in imaging</strong> — where machine learning meaningfully helps clinicians, and where it doesn't.</p></li>
+          </ul>
+        </article>
+        <aside class="card focus-side g5">
+          <div class="open-badge"><span class="pulse" aria-hidden="true"></span> Open to collaboration</div>
+          <div class="area">
+            <h4>Current work</h4>
+            <p>Authoring a narrative review on AI in interventional procedures, and building local, model-agnostic tools for imaging-informatics research.</p>
+          </div>
+          <div class="area">
+            <h4>Looking for</h4>
+            <p>Collaborators at the intersection of AI and medical imaging, dataset partners, and discussion of PACS/DICOM research problems.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PUBLICATIONS (bento: head 12; list 8 + aside 4) ============ -->
+  <section class="pubs" id="publications">
+    <div class="container">
+      <div class="section-head pubs-head g12">
+        <span class="eyebrow">Publications</span>
+        <h2>Papers & preprints</h2>
+        <p class="sub">Filter by topic, year, or venue. Each entry links to the full text, data, and code where available. <span id="pubCount">0</span> shown.</p>
+      </div>
+
+      <div class="chip-groups g12" id="chipGroups" aria-label="Filter publications"></div>
+
+      <div class="bento">
+        <div class="pub-list g8" id="pubList" aria-live="polite"></div>
+        <aside class="card pub-aside g4">
+          <div class="aside-block">
+            <h4>Profiles</h4>
+            <a class="aside-link" href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ">Google Scholar <span class="ext">↗</span></a>
+            <a class="aside-link" href="https://orcid.org/0009-0006-4312-403X">ORCID <span class="ext">↗</span></a>
+            <a class="aside-link" href="https://github.com/greyentity101">GitHub <span class="ext">↗</span></a>
+            <a class="aside-link" href="assets/CV_Mohit_Kumar.pdf" download>Full CV (PDF) <span class="ext">↓</span></a>
+          </div>
+          <div class="aside-block">
+            <h4>How to cite</h4>
+            <p class="muted small">Kumar M. The Predictive Role of Artificial Intelligence in Reducing Complications and Enhancing Precision in Interventional Procedures. Preprint. 2026.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT (bento: 7 + 5) ============ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's talk</h2>
+        <p>For collaborations, speaking, or a straight question about the work.</p>
+      </div>
+      <div class="bento">
+        <article class="card contact-card g7">
+          <p class="contact-sub">I reply to most messages within a couple of days. For research collaboration, a short paragraph on your side is plenty to start.</p>
+          <div class="contact-ctas">
+            <a class="btn secondary" data-mail="email" href="#contact"><span class="ic">✉</span> Email me</a>
+            <a class="btn secondary" data-mail="speaking" href="#contact"><span class="ic">🎤</span> Invite me to speak</a>
+            <a class="btn primary" data-mail="collab" href="#contact"><span class="ic">🤝</span> Propose a collaboration</a>
+          </div>
+        </article>
+        <aside class="card positions-card g5">
+          <div class="open-badge"><span class="pulse" aria-hidden="true"></span> Open to collaboration</div>
+          <ul class="why">
+            <li>Imaging-network research &amp; hospital IT case studies</li>
+            <li>Dataset partnerships for PACS / DICOM workloads</li>
+            <li>Peer review, panels, and workshop speaking</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <a class="brand" href="#top"><span class="brand-mark">MK</span><span class="brand-name">Mohit Kumar</span></a>
+      <span class="muted small">Healthcare IT · PACS · Networking · Imaging</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+      <a href="assets/CV_Mohit_Kumar.pdf" download>CV</a>
+    </nav>
+    <p class="footer-bottom">© <span id="yr"></span> Mohit Kumar · Static HTML/CSS/JS — no server, no dependencies, no tracking.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
