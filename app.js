@@ -27,6 +27,24 @@
      ============================================================ */
   var PUBLICATIONS = [
     {
+      id: 'photon-counting-ct-detectors',
+      title: 'Photon-Counting CT Detectors: Silicon, CdTe, and the Road to Clinical Spectral Imaging',
+      authors: 'Kumar, M.',
+      venue: 'Preprint',
+      year: 2026,
+      type: 'journal',
+      status: 'preprint',
+      topics: ['medical-imaging', 'photon-counting-ct', 'dicom', 'pacs', 'detector-physics', 'spectral-imaging'],
+      doi: '',
+      abstract: 'A comprehensive review of photon-counting CT detector technology — covering CdTe/CZT and deep silicon physics, readout ASICs, the vendor landscape (Siemens NAEOTOM Alpha, GE Photon Spectra, Canon Ultimion), clinical evidence, and the PACS informatics challenges of spectral data at the reading console. Includes 8 analytical figures.',
+      links: {
+        scholar: 'https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ',
+        pdf: 'assets/papers/photon-counting-ct-detectors.pdf',
+        repo: 'https://github.com/greyentity101/photon-counting-ct'
+      },
+      placeholder: false
+    },
+    {
       id: 'ai-interventional-procedures-review',
       title: 'The Predictive Role of Artificial Intelligence in Reducing Complications and Enhancing Precision in Interventional Procedures',
       authors: 'Kumar, M.',
