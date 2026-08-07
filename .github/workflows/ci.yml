@@ -23,15 +23,4 @@ jobs:
           for f in index.html styles.css app.js; do test -f "$f" || { echo "missing $f"; exit 1; }; done
 
       - name: HTML parses cleanly
-        run: python3 - <<'EOF'
-          from html.parser import HTMLParser
-          import sys
-
-          class Checker(HTMLParser):
-              def error(self, msg):
-                  raise SystemExit(f"HTML error: {msg}")
-
-          src = open("index.html", encoding="utf-8").read()
-          Checker().feed(src)
-          print(f"index.html OK ({len(src)} bytes)")
-        EOF
+        run: python3 -c "from html.parser import HTMLParser; import pathlib; HTMLParser().feed(pathlib.Path('index.html').read_text(encoding='utf-8')); print('index.html OK')"
