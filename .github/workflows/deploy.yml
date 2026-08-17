@@ -22,7 +22,7 @@ jobs:
 
       - name: Validate site files
         run: |
-          for f in index.html styles.css app.js; do
+          for f in index.html styles.css app.js sw.js; do
             test -f "$f" || { echo "missing $f"; exit 1; }
           done
 

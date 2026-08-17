@@ -16,11 +16,13 @@ jobs:
           node-version: 20
 
       - name: JavaScript syntax check
-        run: node --check app.js
+        run: |
+          node --check app.js
+          node --check sw.js
 
       - name: Required site files present
         run: |
-          for f in index.html styles.css app.js; do test -f "$f" || { echo "missing $f"; exit 1; }; done
+          for f in index.html styles.css app.js sw.js assets/favicon.ico assets/favicon.svg; do test -f "$f" || { echo "missing $f"; exit 1; }; done
 
       - name: HTML parses cleanly
         run: python3 -c "from html.parser import HTMLParser; import pathlib; HTMLParser().feed(pathlib.Path('index.html').read_text(encoding='utf-8')); print('index.html OK')"

@@ -4,7 +4,7 @@
 > publications. Plain static HTML/CSS/JS — no build step, host-agnostic.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Live](https://img.shields.io/badge/Live-keenkasha.netlify.app-0f766e)](https://keenkasha.netlify.app/)
+[![Live](https://img.shields.io/badge/Live-greyentity101.github.io%2Falfredai-site-0f766e)](https://greyentity101.github.io/alfredai-site/)
 
 ## What & why
 
