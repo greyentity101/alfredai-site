@@ -130,19 +130,20 @@
     <div class="glow glow-b"></div>
     <div class="container bento">
       <article class="card hero-profile g8" aria-labelledby="hero-h">
-        <span class="kicker">Research · AI in Medicine · Imaging Informatics · PACS</span>
-        <h1 id="hero-h">Where <span class="accent">AI</span> meets interventional medicine and imaging</h1>
-        <p class="lede">I research how artificial intelligence is making interventional procedures safer and more precise — and how imaging systems, PACS, and the networks beneath them must evolve to carry that intelligence reliably.</p>
+        <span class="kicker">AI · Medical Imaging · PACS/DICOM · Interventional Radiology</span>
+        <h1 id="hero-h">Making <span class="accent">AI</span> safe, precise, and interoperable in the operating room</h1>
+        <p class="lede">I build the bridges between cutting-edge AI models and the clinical imaging workflows that must carry them — from photon-counting CT detectors to DICOM-native orchestration gateways and model-agnostic evaluation protocols.</p>
         <div class="hero-actions">
           <a class="btn primary big" href="assets/CV_Mohit_Kumar.pdf" download><span class="ic">↓</span> Download CV</a>
           <a class="btn secondary big" data-mail="email" href="#contact">Get in touch</a>
         </div>
         <div class="hero-tags">
-          <span class="tag">AI in Medicine</span>
-          <span class="tag">Interventional</span>
-          <span class="tag">Medical Imaging</span>
-          <span class="tag">PACS / DICOM</span>
-          <span class="tag">Healthcare IT</span>
+          <span class="tag">Photon-Counting CT</span>
+          <span class="tag">DICOMweb</span>
+          <span class="tag">AI Orchestration</span>
+          <span class="tag">PACS Integration</span>
+          <span class="tag">Radiology AI</span>
+          <span class="tag">Model Evaluation</span>
         </div>
       </article>
 
@@ -176,23 +177,23 @@
       </div>
       <div class="bento">
         <article class="card focus-main g7">
-          <p class="thesis">My work sits at the junction of <strong>applied AI</strong> and <strong>clinical imaging</strong>: how machine learning sharpens interventional decisions, and how the PACS/DICOM infrastructure beneath modern imaging must keep pace.</p>
+          <p class="thesis">I operate at the intersection of <strong>applied AI</strong> and <strong>clinical imaging infrastructure</strong>: building model-agnostic tools that let radiology departments evaluate, deploy, and govern AI safely — while pushing the boundaries of detector physics (photon-counting CT) and spectral imaging informatics.</p>
           <ul class="focus-list">
-            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>AI in interventional medicine</strong> — predictive risk modeling, imaging guidance, and robotic-assisted precision.</p></li>
-            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Imaging informatics</strong> — DICOM, PACS, and HL7/FHIR integration across mixed-vendor estates.</p></li>
-            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Applied ML in imaging</strong> — where machine learning meaningfully helps clinicians, and where it doesn't.</p></li>
+            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Photon-counting CT & detector physics</strong> — CdTe/CZT and deep-silicon readout ASICs, vendor landscape (Siemens NAEOTOM Alpha, GE Photon Spectra, Canon Ultimion), and spectral data handling at the PACS reading console.</p></li>
+            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>DICOM-native AI orchestration</strong> — STOW-RS ingestion, model-agnostic worker routing, structured reporting (DICOM SR, FHIR R4), and end-to-end evaluation of latency, segmentation accuracy, and interoperability.</p></li>
+            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Clinical validation & benchmarking</strong> — E1–E4 evaluation protocol measuring p95 latency, Dice/HD95 segmentation, finding-level grounding fidelity, and round-trip integrity on commodity hardware.</p></li>
           </ul>
         </article>
         <aside class="card focus-side g5">
           <div class="open-badge"><span class="pulse" aria-hidden="true"></span> Open to collaboration</div>
-          <div class="area">
-            <h4>Current work</h4>
-            <p>Authoring a narrative review on AI in interventional procedures, and building local, model-agnostic tools for imaging-informatics research.</p>
-          </div>
-          <div class="area">
-            <h4>Looking for</h4>
-            <p>Collaborators at the intersection of AI and medical imaging, dataset partners, and discussion of PACS/DICOM research problems.</p>
-          </div>
+            <div class="area">
+              <h4>Current work</h4>
+              <p>Authoring reviews on photon-counting CT detector physics and AI in interventional procedures. Building open-source evaluation tooling for radiology AI gateways (dicomweb-ai-gateway).</p>
+            </div>
+            <div class="area">
+              <h4>Looking for</h4>
+              <p>Collaborators at the intersection of AI and medical imaging, dataset partners for PACS/DICOM workloads, and clinical validation sites for imaging informatics research.</p>
+            </div>
         </aside>
       </div>
     </div>
@@ -209,6 +210,10 @@
 
       <div class="chip-groups g12" id="chipGroups" aria-label="Filter publications"></div>
 
+      <div class="search-row g12" style="margin: 0 0 14px;">
+        <input type="search" id="pubSearch" class="pub-search" placeholder="Search publications by title, author, topic, or keyword…" autocomplete="off" />
+      </div>
+
       <div class="bento">
         <div class="pub-list g8" id="pubList" aria-live="polite"></div>
         <aside class="card pub-aside g4">
@@ -221,7 +226,8 @@
           </div>
           <div class="aside-block">
             <h4>How to cite</h4>
-            <p class="muted small">Kumar M. The Predictive Role of Artificial Intelligence in Reducing Complications and Enhancing Precision in Interventional Procedures. Preprint. 2026.</p>
+            <p class="muted small" id="citeText">Kumar M. The Predictive Role of Artificial Intelligence in Reducing Complications and Enhancing Precision in Interventional Procedures. Preprint. 2026.</p>
+            <button class="copy-cite-btn" id="copyCiteBtn" type="button" aria-label="Copy citation to clipboard">Copy citation</button>
           </div>
         </aside>
       </div>

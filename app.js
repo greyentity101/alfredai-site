@@ -16,6 +16,10 @@
     collab:   { subject: 'Research collaboration',       body: '' }
   };
 
+  var SITE_URL = 'https://greyentity101.github.io/alfredai-site/';
+  var AUTHOR = 'Mohit Kumar';
+  var SITE_TITLE = 'Mohit Kumar — Researcher in Healthcare IT, PACS & Networking';
+
   /* ============================================================
      PUBLICATIONS — replace the two scaffold rows with your own.
      Each entry:
@@ -75,7 +79,7 @@
       links: {
         scholar: 'https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ',
         repo: 'https://github.com/greyentity101/dicomweb-ai-gateway',
-        pdf: 'https://raw.githubusercontent.com/greyentity101/dicomweb-ai-gateway/main/paper/article.md'
+        pdf: 'assets/papers/dicomweb-ai-gateway-article.md'
       },
       placeholder: false
     }
@@ -206,6 +210,15 @@
     });
   }
 
+  var searchInput = document.getElementById('pubSearch');
+  var searchQuery = '';
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      searchQuery = searchInput.value.trim().toLowerCase();
+      render();
+    });
+  }
+
   function row(p) {
     var ph = p.placeholder ? ' data-placeholder' : '';
     var links = [
@@ -235,9 +248,12 @@
   function render() {
     var shown = PUBLICATIONS
       .filter(function (p) {
-        return (FILTERS.topic === 'All' || p.topics.indexOf(FILTERS.topic) !== -1) &&
+        var matchesChips = (FILTERS.topic === 'All' || p.topics.indexOf(FILTERS.topic) !== -1) &&
                (FILTERS.year  === 'All' || String(p.year) === FILTERS.year) &&
                (FILTERS.venue === 'All' || p.venue === FILTERS.venue);
+        var haystack = (p.title + ' ' + p.authors + ' ' + (p.abstract || '') + ' ' + p.topics.join(' ')).toLowerCase();
+        var matchesSearch = !searchQuery || haystack.indexOf(searchQuery) !== -1;
+        return matchesChips && matchesSearch;
       })
       .sort(function (a, b) { return b.year - a.year; });
 
@@ -351,13 +367,22 @@
   if (navToggle && nav) {
     navToggle.addEventListener('click', function () {
       var open = nav.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     nav.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
         nav.classList.remove('open');
+        navToggle.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
       });
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== navToggle && !navToggle.contains(e.target)) {
+        nav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
@@ -381,6 +406,38 @@
   if (PUBLICATIONS.some(function (p) { return p.placeholder; })) {
     console.info('Placeholder data present in PUBLICATIONS — see README.md to replace.');
   }
+
+  /* ---------- copy citation ---------- */
+  var copyCiteBtn = document.getElementById('copyCiteBtn');
+  var citeText = document.getElementById('citeText');
+  if (copyCiteBtn && citeText) {
+    copyCiteBtn.addEventListener('click', function () {
+      var text = citeText.textContent || '';
+      navigator.clipboard.writeText(text).then(function () {
+        copyCiteBtn.textContent = 'Copied!';
+        setTimeout(function () { copyCiteBtn.textContent = 'Copy citation'; }, 2000);
+      }).catch(function () {
+        copyCiteBtn.textContent = 'Copy failed';
+        setTimeout(function () { copyCiteBtn.textContent = 'Copy citation'; }, 2000);
+      });
+    });
+  }
+
+  /* ---------- filter persistence ---------- */
+  try {
+    var savedFilters = localStorage.getItem('mk-filters');
+    if (savedFilters) {
+      var parsed = JSON.parse(savedFilters);
+      Object.keys(parsed).forEach(function (k) {
+        if (FILTERS.hasOwnProperty(k)) FILTERS[k] = parsed[k];
+      });
+      render();
+    }
+  } catch (e) {}
+  function persistFilters() {
+    try { localStorage.setItem('mk-filters', JSON.stringify(FILTERS)); } catch (e) {}
+  }
+  wrap.addEventListener('click', function () { setTimeout(persistFilters, 0); });
 
   /* ---------- year ---------- */
   var yr = document.getElementById('yr');

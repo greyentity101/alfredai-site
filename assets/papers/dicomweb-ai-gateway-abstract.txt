@@ -1,0 +1,8 @@
+A DICOMweb-Native AI Orchestration Gateway for Radiology
+
+Mohit Kumar
+Researcher in Healthcare IT, PACS & Networking
+
+The deployment of artificial intelligence in clinical radiology remains bottlenecked not by model performance, but by interoperability — the absence of a standards-native pathway that moves a DICOM study from a PACS to a model and returns a machine-readable, reviewable result. This paper presents a DICOMweb-native AI orchestration gateway that closes that gap. Built on DICOM PS3.18 (STOW-RS, WADO-RS, QIDO-RS) and HL7 FHIR R4, the gateway implements a four-layer pipeline — ingestion, model-agnostic inference, structured-result serialization, and report-grounding verification — designed to run on commodity hardware with zero cloud dependency. A four-experiment evaluation protocol (E1–E4) measures end-to-end latency, segmentation accuracy, finding-level grounding fidelity, and interoperability round-trip integrity. Live evaluation yields p95 ingest-to-result latency of 41 ms, throughput of 79.7 requests per second, Dice = 0.696 and HD95 = 1.0 voxel on synthetic chest CT, perfect finding-level grounding under zero mismatch, and full StudyInstanceUID preservation across STOW-RS → inference → DICOM SR → FHIR → QIDO-RS round-trips. These results demonstrate that a fully local, standards-compliant orchestration layer is viable for radiology AI deployment today.
+
+Keywords: DICOMweb, AI orchestration, PACS interoperability, radiology informatics, STOW-RS, WADO-RS, QIDO-RS, FHIR, structured reporting, model-agnostic inference
