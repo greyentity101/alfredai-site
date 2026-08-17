@@ -60,6 +60,24 @@
         pdf: 'assets/papers/ai-interventional-procedures.pdf'
       },
       placeholder: false
+    },
+    {
+      id: 'dicomweb-ai-gateway',
+      title: 'A DICOMweb-Native AI Orchestration Gateway for Radiology',
+      authors: 'Kumar, M.',
+      venue: 'Preprint',
+      year: 2026,
+      type: 'journal',
+      status: 'preprint',
+      topics: ['dicomweb', 'ai-orchestration', 'pacs', 'medical-imaging', 'radiology-informatics', 'fhir', 'structured-reporting'],
+      doi: '',
+      abstract: 'A self-hosted, model-agnostic gateway that ingests DICOM instances via STOW-RS, routes them to pluggable AI workers, and emits structured results as JSON, DICOM SR, and FHIR R4 Bundles. Includes a four-experiment evaluation protocol (E1–E4) measuring latency, segmentation accuracy (Dice/HD95), finding-level grounding fidelity, and interoperability round-trip integrity. Achieves p95 latency of 41 ms and 79.7 req/s throughput on commodity hardware.',
+      links: {
+        scholar: 'https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ',
+        repo: 'https://github.com/greyentity101/dicomweb-ai-gateway',
+        pdf: 'https://raw.githubusercontent.com/greyentity101/dicomweb-ai-gateway/main/paper/article.md'
+      },
+      placeholder: false
     }
   ];
 
