@@ -19,16 +19,30 @@ static host and to be easy for the owner to extend — every editable spot carri
 - **Dark/light themes** — toggle persists to `localStorage`, first visit follows the OS.
 - **Filterable publications** — Topic / Year / Venue chips generated from the data.
 - **Frosted-glass transparency slider** — adjust hero blur live, persists (`localStorage`).
+- **Real-time search** — instant publication search with debounced input.
+- **Copy citation** — one-click citation export for each publication.
+- **Offline-capable** — service worker caches assets for uninterrupted access.
 - **No build step** — static files; deploy anywhere (Netlify, GitHub Pages, a folder).
 
 ## Quickstart
 
 ```bash
-# Open locally (Brave) — or just open index.html in any browser
+# Open locally — or just open index.html in any browser
 powershell -ExecutionPolicy Bypass -File launch-brave.ps1
 ```
 
 Add `?edit=1` to the URL to outline every `data-placeholder` spot (local-only helper).
+
+## Publications
+
+1. **Photon-Counting CT Detectors: Silicon, CdTe, and the Road to Clinical Spectral Imaging**
+   — Technical review, 400 lines, 8 analytical figures. Published August 2026.
+
+2. **The Predictive Role of AI in Reducing Complications and Enhancing Precision in Interventional Procedures**
+   — Narrative review, 469 lines. Preprint 2026. ORCID: 0009-0006-4312-403X.
+
+3. **DICOMweb AI Gateway: A Vendor-Neutral Framework for Deploying Medical Imaging AI Models**
+   — Technical article, 2,367 words, 5 publication-grade figures, E1–E4 evaluation protocol.
 
 ## Customize
 
