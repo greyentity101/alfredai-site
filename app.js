@@ -221,8 +221,11 @@
 
   function row(p) {
     var ph = p.placeholder ? ' data-placeholder' : '';
+    var isMd = p.links.pdf && p.links.pdf.toLowerCase().endsWith('.md');
+    var pdfLabel = isMd ? 'Article (MD)' : 'PDF';
+    var pdfAttrs = isMd ? ' target="_blank" rel="noopener"' : ' download';
     var links = [
-      p.links.pdf     && '<a class="link-pill" href="' + p.links.pdf + '" download>PDF</a>',
+      p.links.pdf     && '<a class="link-pill" href="' + p.links.pdf + '"' + pdfAttrs + '>' + pdfLabel + '</a>',
       p.links.scholar && '<a class="link-pill" href="' + p.links.scholar + '" target="_blank" rel="noopener">Scholar ↗</a>',
       p.links.data    && '<a class="link-pill" href="' + p.links.data + '" target="_blank" rel="noopener">Data</a>',
       p.links.repo    && '<a class="link-pill" href="' + p.links.repo + '" target="_blank" rel="noopener">Repo ↗</a>'
@@ -410,16 +413,38 @@
   /* ---------- copy citation ---------- */
   var copyCiteBtn = document.getElementById('copyCiteBtn');
   var citeText = document.getElementById('citeText');
+  function markCopied(success) {
+    if (!copyCiteBtn) return;
+    copyCiteBtn.textContent = success ? 'Copied!' : 'Copy failed';
+    setTimeout(function () { copyCiteBtn.textContent = 'Copy citation'; }, 2000);
+  }
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      markCopied(ok);
+    } catch (e) {
+      markCopied(false);
+    }
+  }
   if (copyCiteBtn && citeText) {
     copyCiteBtn.addEventListener('click', function () {
       var text = citeText.textContent || '';
-      navigator.clipboard.writeText(text).then(function () {
-        copyCiteBtn.textContent = 'Copied!';
-        setTimeout(function () { copyCiteBtn.textContent = 'Copy citation'; }, 2000);
-      }).catch(function () {
-        copyCiteBtn.textContent = 'Copy failed';
-        setTimeout(function () { copyCiteBtn.textContent = 'Copy citation'; }, 2000);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          markCopied(true);
+        }).catch(function () {
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
     });
   }
 

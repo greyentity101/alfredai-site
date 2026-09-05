@@ -1,6 +1,5 @@
 # Local Netlify folder
 .netlify
 
-# Personal documents — never published
-assets/CV_Mohit_Kumar.pdf
+# Personal portrait photo (optional)
 assets/portrait.jpg
