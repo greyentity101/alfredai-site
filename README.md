@@ -27,7 +27,10 @@ static host and to be easy for the owner to extend — every editable spot carri
 ## Quickstart
 
 ```bash
-# Open locally — or just open index.html in any browser
+# Cross-platform setup (requires Node.js)
+npx serve .
+
+# Or open index.html in any browser (Windows script provided)
 powershell -ExecutionPolicy Bypass -File launch-brave.ps1
 ```
 
@@ -50,8 +53,8 @@ Add `?edit=1` to the URL to outline every `data-placeholder` spot (local-only he
   authors, venue, year, type, status, topics, doi, abstract, links).
 - **Identity & social links** — `index.html`: hero line, role, affiliation, focus bullets, tags,
   and the four social `href`s.
-- **CV & portrait** — add `assets/CV_Mohit_Kumar.pdf` and `assets/portrait.jpg` (both gitignored —
-  not distributed by this repo).
+- **CV & portrait** — add `assets/CV_Mohit_Kumar.pdf` and `assets/portrait.jpg` (portrait is gitignored —
+  CV is committed to the repository).
 - **Profiles & citation** — `index.html` publications aside: Scholar / ORCID / GitHub URLs.
 
 ## Deploy

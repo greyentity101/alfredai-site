@@ -91,7 +91,10 @@
     try { localStorage.setItem('mk-theme', t); } catch (e) {}
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.content = t === 'dark' ? '#0f172a' : '#f8fafc';
-    if (toggle) toggle.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    if (toggle) {
+      toggle.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      toggle.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+    }
   }
   if (toggle) {
     toggle.addEventListener('click', function () {
@@ -211,10 +214,21 @@
 
   var searchInput = document.getElementById('pubSearch');
   var searchQuery = '';
+  var debounceTimer;
   if (searchInput) {
     searchInput.addEventListener('input', function () {
-      searchQuery = searchInput.value.trim().toLowerCase();
-      render();
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function () {
+        searchQuery = searchInput.value.trim().toLowerCase();
+        render();
+      }, 300);
+    });
+  }
+
+  function escapeHTML(str) {
+    if (str == null) return '';
+    return String(str).replace(/[&<>"']/g, function(m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
     });
   }
 
@@ -223,24 +237,39 @@
     var isMd = p.links.pdf && p.links.pdf.toLowerCase().endsWith('.md');
     var pdfLabel = isMd ? 'Article (MD)' : 'PDF';
     var pdfAttrs = isMd ? ' target="_blank" rel="noopener"' : ' download';
+    
+    var ePdf = escapeHTML(p.links.pdf);
+    var eScholar = escapeHTML(p.links.scholar);
+    var eData = escapeHTML(p.links.data);
+    var eRepo = escapeHTML(p.links.repo);
+
     var links = [
-      p.links.pdf     && '<a class="link-pill" href="' + p.links.pdf + '"' + pdfAttrs + '>' + pdfLabel + '</a>',
-      p.links.scholar && '<a class="link-pill" href="' + p.links.scholar + '" target="_blank" rel="noopener">Scholar ↗</a>',
-      p.links.data    && '<a class="link-pill" href="' + p.links.data + '" target="_blank" rel="noopener">Data</a>',
-      p.links.repo    && '<a class="link-pill" href="' + p.links.repo + '" target="_blank" rel="noopener">Repo ↗</a>'
+      p.links.pdf     && '<a class="link-pill" href="' + ePdf + '"' + pdfAttrs + '>' + pdfLabel + '</a>',
+      p.links.scholar && '<a class="link-pill" href="' + eScholar + '" target="_blank" rel="noopener">Scholar ↗</a>',
+      p.links.data    && '<a class="link-pill" href="' + eData + '" target="_blank" rel="noopener">Data</a>',
+      p.links.repo    && '<a class="link-pill" href="' + eRepo + '" target="_blank" rel="noopener">Repo ↗</a>'
     ].filter(Boolean).join('');
-    var venue = p.doi
+    var venueRaw = p.doi
       ? p.venue + ' · ' + p.year + ' · DOI: ' + p.doi
       : p.venue + ' · ' + p.year;
+    var venue = escapeHTML(venueRaw);
+
+    var eYear = escapeHTML(p.year);
+    var eType = escapeHTML(p.type);
+    var eStatus = escapeHTML(p.status);
+    var eTitle = escapeHTML(p.title);
+    var eAuthors = escapeHTML(p.authors);
+    var eAbstract = escapeHTML(p.abstract);
+
     return (
       '<article class="pub-row"' + ph + '>' +
-        '<div class="pub-year">' + p.year + '</div>' +
+        '<div class="pub-year">' + eYear + '</div>' +
         '<div class="pub-body">' +
-          '<div class="pub-type">' + p.type + ' · ' + p.status + '</div>' +
-          '<h3><a href="' + (p.links.pdf || '#') + '">' + p.title + '</a></h3>' +
-          '<p class="pub-authors">' + p.authors + '</p>' +
+          '<div class="pub-type">' + eType + ' · ' + eStatus + '</div>' +
+          '<h3><a href="' + (ePdf || '#') + '">' + eTitle + '</a></h3>' +
+          '<p class="pub-authors">' + eAuthors + '</p>' +
           '<span class="pub-venue">' + venue + '</span>' +
-          (p.abstract ? '<p class="pub-abstract">' + p.abstract + '</p>' : '') +
+          (p.abstract ? '<p class="pub-abstract">' + eAbstract + '</p>' : '') +
           (links ? '<div class="pub-links">' + links + '</div>' : '') +
         '</div>' +
       '</article>'

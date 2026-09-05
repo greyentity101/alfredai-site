@@ -20,8 +20,7 @@
     basePath + 'styles.css',
     basePath + 'app.js',
     basePath + 'assets/favicon.ico',
-    basePath + 'assets/favicon.svg',
-    basePath + 'assets/CV_Mohit_Kumar.pdf'
+    basePath + 'assets/favicon.svg'
   ];
 
   // ---------- install ----------
