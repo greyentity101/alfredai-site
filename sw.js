@@ -1,3 +1,97 @@
-(function(){'z k';var n='e-w-D';var a='/e-w/';var d='/';if(location.pathname.indexOf('/e-w/')===0){d=a}var m=[
-d,d+'r.html',d+'l.css',d+'B.js',d+'C.js',d+'j/h.ico',d+'j/h.svg'
-];s.addEventListener('g',function(x){x.waitUntil(i.open(n).then(function(o){return o.addAll(m)}).catch(function(){}));s.skipWaiting()});s.addEventListener('f',function(x){x.waitUntil(i.keys().then(function(u){return Promise.all(u.map(function(y){if(y!==n){return i.delete(y)}return null}))}));s.clients.claim()});s.addEventListener('fetch',function(x){var A=x.request.url;if(A.indexOf('p.googleapis.com')!==-1||A.indexOf('p.gstatic.com')!==-1){x.respondWith(fetch(x.request).catch(function(){return i.match(x.request)}));return}x.respondWith(i.match(x.request).then(function(t){if(t)return t;return fetch(x.request).then(function(b){if(b&&b.status===200&&b.type==='q'&&x.request.destination!=='document'){var v=b.clone();i.open(n).then(function(o){o.put(x.request,v)})}return b}).catch(function(){if(x.request.mode==='c'){return i.match(d+'r.html')}})}))})})();
+/* ============================================================
+   Service Worker — offline cache for static assets
+   Cache-first for local files; network-first for Google Fonts.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var CACHE = 'alfredai-site-v1';
+  var GHP_PAGES_PREFIX = '/alfredai-site/';
+
+  // Determine the site root path so this works on both localhost and GitHub Pages.
+  var basePath = '/';
+  if (location.pathname.indexOf('/alfredai-site/') === 0) {
+    basePath = GHP_PAGES_PREFIX;
+  }
+
+  var ASSETS = [
+    basePath,
+    basePath + 'index.html',
+    basePath + 'styles.css',
+    basePath + 'app.js',
+    basePath + 'sw.js',
+    basePath + 'assets/favicon.ico',
+    basePath + 'assets/favicon.svg'
+  ];
+
+  // ---------- install ----------
+  self.addEventListener('install', function (evt) {
+    evt.waitUntil(
+      caches.open(CACHE).then(function (cache) {
+        return cache.addAll(ASSETS);
+      }).catch(function () {
+        /* offline install still succeeds even if a URL is unreachable */
+      })
+    );
+    self.skipWaiting();
+  });
+
+  // ---------- activate — clean old caches ----------
+  self.addEventListener('activate', function (evt) {
+    evt.waitUntil(
+      caches.keys().then(function (keys) {
+        return Promise.all(
+          keys.map(function (key) {
+            if (key !== CACHE) {
+              return caches.delete(key);
+            }
+            return null;
+          })
+        );
+      })
+    );
+    self.clients.claim();
+  });
+
+  // ---------- fetch ----------
+  self.addEventListener('fetch', function (evt) {
+    var url = evt.request.url;
+
+    // Network-first for Google Fonts (always want fresh, fall back to cache)
+    if (url.indexOf('fonts.googleapis.com') !== -1 ||
+        url.indexOf('fonts.gstatic.com') !== -1) {
+      evt.respondWith(
+        fetch(evt.request).catch(function () {
+          return caches.match(evt.request);
+        })
+      );
+      return;
+    }
+
+    // Cache-first for everything else
+    evt.respondWith(
+      caches.match(evt.request).then(function (resp) {
+        if (resp) return resp;
+
+        return fetch(evt.request).then(function (networkResp) {
+          /* optionally cache new requests for same-origin */
+          if (networkResp &&
+              networkResp.status === 200 &&
+              networkResp.type === 'basic' &&
+              evt.request.destination !== 'document') {
+            var copy = networkResp.clone();
+            caches.open(CACHE).then(function (cache) {
+              cache.put(evt.request, copy);
+            });
+          }
+          return networkResp;
+        }).catch(function () {
+          /* offline fallback for same-origin HTML navigation */
+          if (evt.request.mode === 'navigate') {
+            return caches.match(basePath + 'index.html');
+          }
+        });
+      })
+    );
+  });
+})();
