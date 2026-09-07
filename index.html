@@ -11,6 +11,9 @@
   <link rel="apple-touch-icon" href="assets/favicon.svg" sizes="180x180" />
   <link rel="canonical" href="https://greyentity101.github.io/alfredai-site/" />
 
+  <!-- Web App Manifest & PWA Support -->
+  <link rel="manifest" href="manifest.json" />
+
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Mohit Kumar - Healthcare AI, Medical Imaging & PACS Architecture" />
   <meta property="og:description" content="Bridging deep learning with clinical imaging workflows, photon-counting CT physics, and DICOMweb AI gateways." />
@@ -18,6 +21,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://greyentity101.github.io/alfredai-site/assets/papers/figures/fig1_architecture.png" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Performance: Resource Hints for Global Fast Loading -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -694,6 +703,18 @@
 
   <script src="blackhole.js"></script>
   <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        var swPath = window.location.pathname.indexOf('/alfredai-site/') === 0 ? '/alfredai-site/sw.js' : 'sw.js';
+        navigator.serviceWorker.register(swPath).then(function (reg) {
+          /* ServiceWorker registered successfully for offline support */
+        }).catch(function (err) {
+          console.warn('[PWA] ServiceWorker registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
 

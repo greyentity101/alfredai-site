@@ -29,12 +29,23 @@
 ## 🚀 Quickstart
 
 ```bash
-# Preview locally with Python HTTP server
+# 1. Preview locally via one-click batch runner
+run-local.bat
+
+# Or preview with Python HTTP server
 python -m http.server 8000
 
-# Or launch directly in your browser (Windows PowerShell script)
+# 2. Or launch directly in Brave / default browser
 powershell -ExecutionPolicy Bypass -File launch-brave.ps1
+
+# 3. Global Internet Access
+# Hosted on GitHub Pages with global CDN edge distribution:
+https://greyentity101.github.io/alfredai-site/
 ```
+
+### 🌍 Global CDN & Offline PWA Capabilities
+- **Global Edge Delivery**: High-speed CDN caching with zero external runtime dependencies.
+- **Full Offline PWA Support**: Installed Service Worker (`sw.js`) with `stale-while-revalidate` caching strategy and web app manifest (`manifest.json`) allows the complete site, publication PDFs, and architecture diagrams to load instantly without active internet.
 
 ---
 
