@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var CACHE = 'alfredai-site-v1';
+  var CACHE = 'alfredai-site-v2';
   var GHP_PAGES_PREFIX = '/alfredai-site/';
 
   // Determine the site root path so this works on both localhost and GitHub Pages.
@@ -18,6 +18,7 @@
     basePath,
     basePath + 'index.html',
     basePath + 'styles.css',
+    basePath + 'blackhole.js',
     basePath + 'app.js',
     basePath + 'assets/favicon.ico',
     basePath + 'assets/favicon.svg'

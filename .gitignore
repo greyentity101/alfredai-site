@@ -3,3 +3,7 @@
 
 # Personal portrait photo (optional)
 assets/portrait.jpg
+
+# Backups & local test artifacts
+*.original.*
+test.txt

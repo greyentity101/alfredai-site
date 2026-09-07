@@ -1,291 +1,699 @@
-<!doctype html>
-<!--
-  ============================================================
-  EDITING GUIDE — Mohit Kumar · Researcher Site
-  Every scaffolded spot carries a data-placeholder attribute.
-  Open the site with  index.html?edit=1  to see them outlined.
-  Full instructions: README.md
-  1. app.js  →  EMAIL constant (top) + PUBLICATIONS array (two scaffold rows to replace)
-  2. index.html → your title/role/affiliation, thesis, focus bullets, socials
-  3. assets/CV_Mohit_Kumar.pdf  →  overwrite with your academic CV
-  4. assets/portrait.jpg  →  add a photo (a serif "MK" monogram shows until then)
-  ============================================================
--->
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mohit Kumar — Researcher in Healthcare IT, PACS &amp; Networking</title>
-<meta name="description" content="Research, publications, and contact for Mohit Kumar — work at the intersection of Healthcare IT, PACS, networking, and imaging science." />
-<meta name="theme-color" content="#0f172a" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <title>Mohit Kumar - Researcher in Healthcare IT, PACS & AI Architecture</title>
+  <meta name="description" content="Research, publications, and open-source systems by Mohit Kumar - bridging deep learning with clinical imaging workflows, photon-counting CT, and DICOMweb gateways." />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" sizes="any" />
+  <link rel="apple-touch-icon" href="assets/favicon.svg" sizes="180x180" />
+  <link rel="canonical" href="https://greyentity101.github.io/alfredai-site/" />
 
-<!-- Favicons -->
-<link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" sizes="any">
-<link rel="apple-touch-icon" href="assets/favicon.svg" sizes="180x180">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Mohit Kumar - Healthcare AI, Medical Imaging & PACS Architecture" />
+  <meta property="og:description" content="Bridging deep learning with clinical imaging workflows, photon-counting CT physics, and DICOMweb AI gateways." />
+  <meta property="og:url" content="https://greyentity101.github.io/alfredai-site/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://greyentity101.github.io/alfredai-site/assets/papers/figures/fig1_architecture.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-<!-- SEO: Canonical -->
-<link rel="canonical" href="https://greyentity101.github.io/alfredai-site/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Mohit Kumar — Researcher in Healthcare IT, PACS &amp; Networking">
-<meta property="og:description" content="Research, publications, and contact for Mohit Kumar — work at the intersection of Healthcare IT, PACS, networking, and imaging science.">
-<meta property="og:url" content="https://greyentity101.github.io/alfredai-site/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://greyentity101.github.io/alfredai-site/assets/favicon.svg">
-<meta property="og:image:alt" content="Mohit Kumar (MK) — Healthcare IT researcher">
-<meta property="og:locale" content="en_US">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mohit Kumar — Researcher in Healthcare IT, PACS &amp; Networking">
-<meta name="twitter:description" content="Research, publications, and contact for Mohit Kumar — work at the intersection of Healthcare IT, PACS, networking, and imaging science.">
-<meta name="twitter:image" content="https://greyentity101.github.io/alfredai-site/assets/favicon.svg">
-<meta name="twitter:image:alt" content="Mohit Kumar (MK) — Healthcare IT researcher">
-
-<!-- Performance: resource hints -->
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
-<link rel="dns-prefetch" href="https://fonts.gstatic.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<script>
-  /* theme init — runs before paint to prevent flash-of-wrong-theme */
-  (function () {
-    try {
-      var q = new URLSearchParams(window.location.search).get('theme'); /* ?theme=light|dark preview override */
-      var t = localStorage.getItem('mk-theme');
-      if (q === 'light' || q === 'dark') t = q;
-      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.dataset.theme = t;
-      var m = document.querySelector('meta[name="theme-color"]');
-      if (m) m.content = t === 'dark' ? '#0f172a' : '#f8fafc';
-      var g = parseFloat(localStorage.getItem('mk-glass'));
-      if (!isNaN(g) && g >= 0 && g <= 100) {
-        document.documentElement.style.setProperty('--glass-alpha', (g / 100).toFixed(2));
-      }
-    } catch (e) { document.documentElement.dataset.theme = 'dark'; }
-  })();
-</script>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<!-- animated aurora — the light behind the frosted glass -->
-<div class="aurora" aria-hidden="true">
-  <span class="orb orb-a"></span>
-  <span class="orb orb-b"></span>
-  <span class="orb orb-c"></span>
-  <span class="orb orb-d"></span>
-</div>
 
-<a class="skip-link" href="#main">Skip to content</a>
+  <!-- ============ SITE HEADER (Floating Frosted-Glass Pill Navbar) ============ -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#hero" class="brand" aria-label="Mohit Kumar - Home">
+        <span class="brand-icon">MK</span>
+        <span>Mohit Kumar</span>
+      </a>
 
-<!-- ============ HEADER ============ -->
-<header class="site-header" id="siteHeader">
-  <div class="container header-inner">
-    <a class="brand" href="#top" aria-label="Mohit Kumar — home">
-      <span class="brand-mark">MK</span>
-      <span class="brand-name">Mohit&nbsp;Kumar</span>
-    </a>
-    <nav class="nav" id="nav" aria-label="Primary">
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="header-actions">
-      <a class="btn ghost" href="assets/CV_Mohit_Kumar.pdf" download data-placeholder>CV</a>
-        <button class="glass-toggle" id="glassToggle" type="button" aria-label="Open appearance settings" aria-expanded="false" aria-controls="glassPanel">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M2 14h4M10 8h4M18 16h4"/></svg>
-      </button>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark / light theme" aria-pressed="false">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
-          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      <nav class="nav-pill" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#showcase" class="nav-link">Showcase</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#evaluations" class="nav-link">Benchmarks</a>
+        <a href="#metrics" class="nav-link">Milestones</a>
+        <a href="#publications" class="nav-link">Publications</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <button type="button" class="search-trigger" data-open-search aria-label="Search site">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
         </button>
-    </div>
-  </div>
-</header>
+      </nav>
 
-<!-- ============ APPEARANCE POPOVER (transparency slider) ============ -->
-<div class="glass-panel" id="glassPanel">
-  <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M2 14h4M10 8h4M18 16h4"/></svg>Appearance</h3>
-  <div class="glass-row">
-    <div class="glass-row-head">
-      <label for="glassRange">Transparency</label>
-      <span class="glass-readout" id="glassReadout">55%</span>
-    </div>
-    <input type="range" class="glass-range" id="glassRange" min="10" max="95" value="55" step="1" aria-label="Glass transparency" />
-    <p class="glass-hint">Lower is more transparent frosted glass · higher is more opaque.</p>
-  </div>
-  <button type="button" class="glass-reset" id="glassReset">Reset to default</button>
-</div>
+      <div class="header-actions">
+        <a href="https://github.com/greyentity101" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="Mohit Kumar on GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+          </svg>
+        </a>
 
-<main id="main">
+        <button type="button" class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+        </button>
 
-  <!-- ============ HERO / PROFILE (bento: 8 + 4) ============ -->
-  <section class="hero" id="top">
-    <div class="glow glow-a"></div>
-    <div class="glow glow-b"></div>
-    <div class="container bento">
-      <article class="card hero-profile g8" aria-labelledby="hero-h">
-        <span class="kicker">AI · Medical Imaging · PACS/DICOM · Interventional Radiology</span>
-        <h1 id="hero-h">Making <span class="accent">AI</span> safe, precise, and interoperable in the operating room</h1>
-        <p class="lede">I build the bridges between cutting-edge AI models and the clinical imaging workflows that must carry them — from photon-counting CT detectors to DICOM-native orchestration gateways and model-agnostic evaluation protocols.</p>
-        <div class="hero-actions">
-          <a class="btn primary big" href="assets/CV_Mohit_Kumar.pdf" download><span class="ic">↓</span> Download CV</a>
-          <a class="btn secondary big" data-mail="email" href="#contact">Get in touch</a>
-        </div>
-        <div class="hero-tags">
-          <span class="tag">Photon-Counting CT</span>
-          <span class="tag">DICOMweb</span>
-          <span class="tag">AI Orchestration</span>
-          <span class="tag">PACS Integration</span>
-          <span class="tag">Radiology AI</span>
-          <span class="tag">Model Evaluation</span>
-        </div>
-      </article>
-
-      <aside class="card hero-identity g4">
-        <div class="portrait" data-placeholder>MK</div>
-        <h2>Mohit Kumar</h2>
-        <p class="role">Healthcare IT · PACS · Imaging Informatics</p>
-        <p class="affil">Independent researcher</p>
-        <div class="socials">
-          <a class="social" href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ" aria-label="Google Scholar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></a>
-          <a class="social" href="https://orcid.org/0009-0006-4312-403X" aria-label="ORCID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 16V8"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="16" r="1.2" fill="currentColor"/><circle cx="12" cy="8" r="1.2" fill="currentColor"/></svg></a>
-          <a class="social" href="https://github.com/greyentity101" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
-          <a class="social" href="https://linkedin.com/in/greyentity101" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg></a>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ============ QUICK STATS (data-driven — filled by app.js) ============ -->
-  <section class="stats" aria-label="Quick statistics">
-    <div class="container bento stats-bento" id="statsBand" aria-live="polite"></div>
-  </section>
-
-  <!-- ============ RESEARCH FOCUS (bento: 7 + 5) ============ -->
-  <section class="focus" id="research">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Research Focus</span>
-        <h2>Where the work sits</h2>
-        <p>An honest, jargon-light map of the problems I care about.</p>
+        <button type="button" class="icon-btn mobile-menu-btn" id="mobileMenuOpen" aria-label="Open mobile menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
-      <div class="bento">
-        <article class="card focus-main g7">
-          <p class="thesis">I operate at the intersection of <strong>applied AI</strong> and <strong>clinical imaging infrastructure</strong>: building model-agnostic tools that let radiology departments evaluate, deploy, and govern AI safely — while pushing the boundaries of detector physics (photon-counting CT) and spectral imaging informatics.</p>
-          <ul class="focus-list">
-            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Photon-counting CT & detector physics</strong> — CdTe/CZT and deep-silicon readout ASICs, vendor landscape (Siemens NAEOTOM Alpha, GE Photon Spectra, Canon Ultimion), and spectral data handling at the PACS reading console.</p></li>
-            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>DICOM-native AI orchestration</strong> — STOW-RS ingestion, model-agnostic worker routing, structured reporting (DICOM SR, FHIR R4), and end-to-end evaluation of latency, segmentation accuracy, and interoperability.</p></li>
-            <li class="focus-item"><span class="dot" aria-hidden="true"></span><p><strong>Clinical validation & benchmarking</strong> — E1–E4 evaluation protocol measuring p95 latency, Dice/HD95 segmentation, finding-level grounding fidelity, and round-trip integrity on commodity hardware.</p></li>
-          </ul>
-        </article>
-        <aside class="card focus-side g5">
-          <div class="open-badge"><span class="pulse" aria-hidden="true"></span> Open to collaboration</div>
-            <div class="area">
-              <h3>Current work</h3>
-              <p>Authoring reviews on photon-counting CT detector physics and AI in interventional procedures. Building open-source evaluation tooling for radiology AI gateways (dicomweb-ai-gateway).</p>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE MENU DIALOG ============ -->
+  <dialog class="mobile-dialog" id="mobileMenu">
+    <div class="mobile-header">
+      <div class="brand">
+        <span class="brand-icon">MK</span>
+        <span>Mohit Kumar</span>
+      </div>
+      <button type="button" class="icon-btn" id="mobileMenuClose" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="#hero" class="mobile-nav-link">Home</a>
+      <a href="#showcase" class="mobile-nav-link">Showcase</a>
+      <a href="#architecture" class="mobile-nav-link">Architecture</a>
+      <a href="#evaluations" class="mobile-nav-link">Benchmarks</a>
+      <a href="#metrics" class="mobile-nav-link">Milestones</a>
+      <a href="#publications" class="mobile-nav-link">Publications</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+      <a href="assets/CV_Mohit_Kumar.pdf" download class="mobile-nav-link">Curriculum Vitae (PDF)</a>
+    </div>
+    <button type="button" class="btn-pill secondary" data-open-search style="width: 100%; margin-top: auto;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      Search Hub
+    </button>
+  </dialog>
+
+  <main>
+    <!-- ============ HERO SECTION (Interactive WebGL Relativistic Kerr Black Hole) ============ -->
+    <section id="hero" class="hero-section">
+      <div class="hero-canvas-wrap">
+        <canvas id="scene" aria-label="Interactive Relativistic Kerr Black Hole Simulation"></canvas>
+      </div>
+      <div class="hero-backdrop-tint"></div>
+
+      <div class="container hero-inner">
+        <div>
+          <div class="hero-top-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>Healthcare AI &amp; Imaging Systems · 2026</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Making <span data-slot="italic">AI</span> safe, precise, &amp; interoperable.
+          </h1>
+        </div>
+
+        <div class="hero-bottom-grid">
+          <div>
+            <p class="hero-subtext">
+              Bridging cutting-edge deep learning with clinical imaging workflows - from photon-counting CT detector physics to DICOMweb orchestration gateways and model-agnostic evaluation protocols.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#showcase" class="btn-pill primary">
+                <span>Explore Research</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </a>
+              <a href="assets/CV_Mohit_Kumar.pdf" download class="btn-pill secondary">
+                <span>Download CV</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </a>
             </div>
-            <div class="area">
-              <h3>Looking for</h3>
-              <p>Collaborators at the intersection of AI and medical imaging, dataset partners for PACS/DICOM workloads, and clinical validation sites for imaging informatics research.</p>
+
+            <!-- Relativistic Physics HUD stats -->
             </div>
-        </aside>
-      </div>
-    </div>
-  </section>
+          </div>
 
-  <!-- ============ PUBLICATIONS (bento: head 12; list 8 + aside 4) ============ -->
-  <section class="pubs" id="publications">
+          <div class="hero-right-col">
+            <div class="hero-badge-small">
+              <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd"/>
+              </svg>
+              <span>Peer-Reviewed &amp; Preprints 2026</span>
+            </div>
+            <h2 class="hero-big-title">
+              <span data-slot="italic">Clinical</span> Gravity.
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PHILOSOPHY SECTION ("Classics have gravity") ============ -->
+    <section class="section-philosophy" id="philosophy">
+      <div class="container philosophy-inner">
+        <h2 class="philosophy-title">
+          Research has <span data-slot="italic">gravity</span>.
+        </h2>
+        <p class="philosophy-desc">
+          Before neural networks enter the surgical suite or clinical reading console, preserve deterministic safety, sub-45ms latency, and vendor-neutral interoperability. Let precision enter your orbit of patient care.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED WORKS SHOWCASE (Ambient Glow Carousel) ============ -->
+    <section class="section-showcase" id="showcase">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>Research In Action</span>
+          </div>
+          <h2 class="section-title">
+            Clinical systems, <span data-slot="italic">made precise</span>.
+          </h2>
+          <p class="section-subtitle">
+            Orchestration gateways, direct-conversion detector physics, and systematic evaluation protocols in one unified framework.
+          </p>
+        </div>
+
+        <div class="carousel-wrapper">
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- Slide 1: DICOMweb Gateway Architecture -->
+              <div class="carousel-slide">
+                <div class="showcase-card">
+                  <div class="showcase-glow glow-violet"></div>
+                  <img src="assets/papers/figures/fig1_architecture.png" alt="DICOMweb AI Gateway Architecture Diagram" class="showcase-image" />
+                  <div class="showcase-info-card">
+                    <span class="showcase-tag">Infrastructure</span>
+                    <h3 class="showcase-title">DICOMweb-Native AI Gateway</h3>
+                    <p class="showcase-desc">Vendor-neutral STOW-RS ingestion, pluggable AI workers, and automated DICOM SR &amp; FHIR R4 generation.</p>
+                    <a href="https://github.com/greyentity101/dicomweb-ai-gateway" target="_blank" class="showcase-link">
+                      View Gateway Architecture &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2: E1 Latency & Throughput Benchmark -->
+              <div class="carousel-slide">
+                <div class="showcase-card">
+                  <div class="showcase-glow glow-emerald"></div>
+                  <img src="assets/papers/figures/fig2_e1_latency.png" alt="E1 Latency and Throughput Evaluation Figure" class="showcase-image" />
+                  <div class="showcase-info-card">
+                    <span class="showcase-tag">Performance</span>
+                    <h3 class="showcase-title">Sub-45ms Real-Time Routing</h3>
+                    <p class="showcase-desc">Achieves p95 latency of 41 ms and 79.7 requests/sec on commodity hardware without GPU overhead.</p>
+                    <a href="#evaluations" class="showcase-link">
+                      Read Evaluation Protocol &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3: E2 Segmentation & Risk Precision -->
+              <div class="carousel-slide">
+                <div class="showcase-card">
+                  <div class="showcase-glow glow-amber"></div>
+                  <img src="assets/papers/figures/fig3_e2_segmentation.png" alt="E2 Segmentation Accuracy and Boundary Precision Figure" class="showcase-image" />
+                  <div class="showcase-info-card">
+                    <span class="showcase-tag">Clinical Accuracy</span>
+                    <h3 class="showcase-title">Segmentation &amp; Procedural Risk</h3>
+                    <p class="showcase-desc">Evaluating Dice coefficients, 95% Hausdorff distances, and complication reduction in image-guided procedures.</p>
+                    <a href="#evaluations" class="showcase-link">
+                      Examine Clinical Data &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 4: E3 Finding Grounding -->
+              <div class="carousel-slide">
+                <div class="showcase-card">
+                  <div class="showcase-glow glow-cyan"></div>
+                  <img src="assets/papers/figures/fig4_e3_grounding.png" alt="E3 Finding-Level Grounding Fidelity Benchmark Figure" class="showcase-image" />
+                  <div class="showcase-info-card">
+                    <span class="showcase-tag">Grounding Fidelity</span>
+                    <h3 class="showcase-title">Finding-Level Spatial Grounding</h3>
+                    <p class="showcase-desc">Guaranteed localization alignment ensuring generated radiology report findings match pixel annotations.</p>
+                    <a href="#evaluations" class="showcase-link">
+                      View Benchmark Metrics &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 5: E4 Round-Trip Integrity -->
+              <div class="carousel-slide">
+                <div class="showcase-card">
+                  <div class="showcase-glow glow-rose"></div>
+                  <img src="assets/papers/figures/fig5_e4_roundtrip.png" alt="E4 Round-Trip Interoperability Protocol Figure" class="showcase-image" />
+                  <div class="showcase-info-card">
+                    <span class="showcase-tag">Interoperability</span>
+                    <h3 class="showcase-title">DICOM SR &amp; FHIR R4 Integrity</h3>
+                    <p class="showcase-desc">End-to-end roundtrip validation preserving lossless structured data across PACS, VNA, and EHR archives.</p>
+                    <a href="#evaluations" class="showcase-link">
+                      Read Roundtrip Specs &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <div class="carousel-dots" id="carouselDots"></div>
+            <div class="carousel-nav-btns">
+              <button type="button" class="carousel-btn" id="carouselPrev" aria-label="Previous Slide">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button type="button" class="carousel-btn" id="carouselNext" aria-label="Next Slide">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4-LAYER ARCHITECTURE DEEP-DIVE ============ -->
+    <section class="section-architecture" id="architecture">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+            <span>Systems Architecture</span>
+          </div>
+          <h2 class="section-title">
+            The 4-Layer <span data-slot="italic">Clinical Orchestrator</span>
+          </h2>
+          <p class="section-subtitle">
+            An open, model-agnostic bridge between enterprise hospital PACS archives and modern deep learning inference pipelines.
+          </p>
+        </div>
+
+        <!-- Layer Selector Tabs -->
+        <div class="arch-nav-tabs">
+          <button type="button" class="arch-tab-btn active" data-layer="0">Layer 1: Ingestion &amp; Storage</button>
+          <button type="button" class="arch-tab-btn" data-layer="1">Layer 2: Inference Workers</button>
+          <button type="button" class="arch-tab-btn" data-layer="2">Layer 3: DICOM SR &amp; FHIR</button>
+          <button type="button" class="arch-tab-btn" data-layer="3">Layer 4: Grounding Audit</button>
+        </div>
+
+        <!-- Dynamic Architecture Card -->
+        <div class="arch-content-card">
+          <div>
+            <span class="arch-layer-pill" id="archLayerPill">LAYER 1 · INGESTION &amp; STORAGE</span>
+            <h3 class="arch-layer-title" id="archLayerTitle">DICOM PS3.18 Native Gateway</h3>
+            <p class="arch-layer-desc" id="archLayerDesc">
+              Implements full DICOMweb RESTful bindings over standard HTTP verbs. Ingests heterogeneous clinical studies directly from modalities and enterprise PACS with zero metadata degradation.
+            </p>
+            <ul class="arch-bullet-list" id="archBullets"></ul>
+          </div>
+
+          <div>
+            <pre class="arch-code-box"><code id="archCodeBox"></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIMENTAL EVALUATION MATRICES ============ -->
+    <section class="section-evaluations" id="evaluations">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            <span>Empirical Validation</span>
+          </div>
+          <h2 class="section-title">
+            Peer-evaluated <span data-slot="italic">accuracy &amp; physics</span>.
+          </h2>
+          <p class="section-subtitle">
+            Reproducible clinical evaluation protocols (E1-E4) alongside comparative detector semiconductor physics.
+          </p>
+        </div>
+
+        <div class="eval-tables-grid">
+          <!-- Table 1: E1-E4 Live Evaluation Protocol -->
+          <div class="eval-table-card">
+            <div class="eval-table-header">
+              <h3 class="eval-table-title">Gateway Protocol (E1-E4)</h3>
+              <span class="eval-table-badge">CPU Benchmark · Intel i5</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Experiment</th>
+                  <th>Primary Metric</th>
+                  <th>Observed Value</th>
+                  <th>Clinical Target</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>E1 Latency</strong></td>
+                  <td>p95 Ingest-to-Result</td>
+                  <td class="highlight">41.0 ms</td>
+                  <td>&lt; 100 ms</td>
+                </tr>
+                <tr>
+                  <td><strong>E1 Throughput</strong></td>
+                  <td>Concurrent Volume</td>
+                  <td class="highlight">79.7 req/s</td>
+                  <td>&gt; 25 req/s</td>
+                </tr>
+                <tr>
+                  <td><strong>E2 Segmentation</strong></td>
+                  <td>Sørensen-Dice (DSC)</td>
+                  <td class="highlight">0.696</td>
+                  <td>Deterministic Mask</td>
+                </tr>
+                <tr>
+                  <td><strong>E2 Boundary</strong></td>
+                  <td>Hausdorff (HD95)</td>
+                  <td class="highlight">1.0 voxel</td>
+                  <td>&le; 2.0 voxels</td>
+                </tr>
+                <tr>
+                  <td><strong>E3 Grounding</strong></td>
+                  <td>Spatial F1-Score</td>
+                  <td class="highlight">1.000</td>
+                  <td>&gt; 0.95</td>
+                </tr>
+                <tr>
+                  <td><strong>E4 Round-Trip</strong></td>
+                  <td>StudyInstanceUID</td>
+                  <td class="highlight">100% Preserved</td>
+                  <td>100% Provenance</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table 2: PCCT Semiconductor Physics Matrix -->
+          <div class="eval-table-card">
+            <div class="eval-table-header">
+              <h3 class="eval-table-title">PCCT Semiconductor Physics</h3>
+              <span class="eval-table-badge">Detector Comparison</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Deep Silicon (GE)</th>
+                  <th>CdTe / CZT (Siemens)</th>
+                  <th>Canon Ultimion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Stopping Power</strong></td>
+                  <td>Edge-on geometry</td>
+                  <td class="highlight">Very High (Z=48,52)</td>
+                  <td>High direct capture</td>
+                </tr>
+                <tr>
+                  <td><strong>Hole Tailing / Bias</strong></td>
+                  <td class="highlight">Zero Polarization</td>
+                  <td>Polarization risk</td>
+                  <td>Compensated ASIC</td>
+                </tr>
+                <tr>
+                  <td><strong>Pixel Pitch</strong></td>
+                  <td>0.14 mm</td>
+                  <td class="highlight">0.11 mm</td>
+                  <td>0.16 mm</td>
+                </tr>
+                <tr>
+                  <td><strong>Energy Bins</strong></td>
+                  <td>Up to 8 Bins</td>
+                  <td>4 Threshold Bins</td>
+                  <td>Multi-threshold</td>
+                </tr>
+                <tr>
+                  <td><strong>Spectral Speed</strong></td>
+                  <td class="highlight">Sub-nanosecond</td>
+                  <td>Charge sharing corr.</td>
+                  <td>Fast readout ASIC</td>
+                </tr>
+                <tr>
+                  <td><strong>PACS Bottleneck</strong></td>
+                  <td>8x Volume Data</td>
+                  <td>Multi-series DICOM</td>
+                  <td>High bandwidth req.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BENTO GRID & MILESTONES (Motrix Signature Beam) ============ -->
+    <section class="section-metrics" id="metrics">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">
+            Some notable milestones <span data-slot="italic">in our research</span>.
+          </h2>
+          <p class="section-subtitle">
+            Open-source radiology informatics by the numbers, and what peers say.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-large-beam">
+            <div>
+              <h3 class="bento-header-title">Mohit Kumar · Research Lab</h3>
+              <div class="bento-quote-box">
+                <p class="bento-quote-text" id="bentoQuoteText">
+                  “A self-hosted, model-agnostic gateway achieving p95 latency of 41ms and 79.7 req/s throughput on commodity hardware with full STOW-RS and DICOM SR fidelity.”
+                </p>
+                <div class="bento-quote-author" id="bentoQuoteAuthor">
+                  DICOMweb AI Gateway - Evaluation Protocol E1-E4
+                </div>
+              </div>
+            </div>
+
+            <div class="bento-tabs">
+              <button type="button" class="bento-tab-btn active" data-tab="0">PACS Gateway</button>
+              <button type="button" class="bento-tab-btn" data-tab="1">Spectral CT</button>
+              <button type="button" class="bento-tab-btn" data-tab="2">Interventional AI</button>
+            </div>
+          </div>
+
+          <div class="bento-stat-card">
+            <div class="stat-number">3+</div>
+            <p class="stat-label">Major Technical Reviews &amp; Architecture Specs</p>
+          </div>
+
+          <div class="bento-stat-card">
+            <div class="stat-number">41ms</div>
+            <p class="stat-label">p95 Inference &amp; Ingestion Latency</p>
+          </div>
+
+          <div class="bento-stat-card">
+            <div class="stat-number">8+</div>
+            <p class="stat-label">Analytical Figures on Photon-Counting Physics</p>
+          </div>
+
+          <div class="bento-stat-card">
+            <div class="stat-number">100%</div>
+            <p class="stat-label">Vendor-Neutral DICOMweb &amp; FHIR R4 Compliant</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PUBLICATIONS VAULT ============ -->
+    <section class="section-publications" id="publications">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span>Research Repository</span>
+          </div>
+          <h2 class="section-title">
+            Filterable Research &amp; <span data-slot="italic">Publications</span>
+          </h2>
+          <p class="section-subtitle">
+            Preprints, clinical reviews, and open-source gateway repositories ready for citation and deployment.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-chips">
+            <button type="button" class="filter-chip active" data-filter="all">All Topics</button>
+            <button type="button" class="filter-chip" data-filter="medical-imaging">Medical Imaging</button>
+            <button type="button" class="filter-chip" data-filter="dicomweb">DICOMweb</button>
+            <button type="button" class="filter-chip" data-filter="photon-counting-ct">Photon-Counting CT</button>
+            <button type="button" class="filter-chip" data-filter="ai-orchestration">AI Orchestration</button>
+            <button type="button" class="filter-chip" data-filter="interventional">Interventional</button>
+          </div>
+
+          <div class="filter-search-wrap">
+            <svg class="filter-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="pubSearchInput" class="filter-search-input" placeholder="Search papers, ASICs, DICOM..." aria-label="Search publications" />
+          </div>
+        </div>
+
+        <div class="publications-list" id="publicationsList"></div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT / IDENTITY ============ -->
+    <section class="section-contact" id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-info">
+            <h2 class="contact-title">
+              Let's advance <span data-slot="italic">imaging intelligence</span> together.
+            </h2>
+            <p class="contact-subtext">
+              Available for clinical AI research collaborations, DICOMweb architecture consulting, and academic discussions.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a href="mailto:mohitjat202@gmail.com" class="btn-pill primary">
+              <span>Send an Email</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </a>
+            <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ" target="_blank" rel="noopener noreferrer" class="btn-pill secondary">
+              <span>Google Scholar</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (Motrix Multi-Column Layout) ============ -->
+  <footer class="site-footer">
     <div class="container">
-      <div class="section-head pubs-head g12">
-        <span class="eyebrow">Publications</span>
-        <h2>Papers & preprints</h2>
-        <p class="sub">Filter by topic, year, or venue. Each entry links to the full text, data, and code where available. <span id="pubCount">0</span> shown.</p>
-      </div>
-
-      <noscript>
-        <p class="pub-empty">Enable JavaScript to use the publication filter and live search.</p>
-      </noscript>
-
-      <div class="chip-groups g12" id="chipGroups" aria-label="Filter publications"></div>
-
-      <div class="search-row g12" style="margin: 0 0 14px;">
-        <input type="search" id="pubSearch" class="pub-search" aria-label="Search publications" placeholder="Search publications by title, author, topic, or keyword…" autocomplete="off" />
-      </div>
-
-      <div class="bento">
-        <div class="pub-list g8" id="pubList" aria-live="polite"></div>
-        <aside class="card pub-aside g4">
-          <div class="aside-block">
-            <h3>Profiles</h3>
-            <a class="aside-link" href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ">Google Scholar <span class="ext">↗</span></a>
-            <a class="aside-link" href="https://orcid.org/0009-0006-4312-403X">ORCID <span class="ext">↗</span></a>
-            <a class="aside-link" href="https://github.com/greyentity101">GitHub <span class="ext">↗</span></a>
-            <a class="aside-link" href="assets/CV_Mohit_Kumar.pdf" download>Full CV (PDF) <span class="ext">↓</span></a>
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom: 1rem;">
+            <span class="brand-icon">MK</span>
+            <span>Mohit Kumar</span>
           </div>
-          <div class="aside-block">
-            <h3>How to cite</h3>
-            <p class="muted small" id="citeText">Kumar M. The Predictive Role of Artificial Intelligence in Reducing Complications and Enhancing Precision in Interventional Procedures. Preprint. 2026.</p>
-            <button class="copy-cite-btn" id="copyCiteBtn" type="button" aria-label="Copy citation to clipboard">Copy citation</button>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
+          <p style="max-width: 320px; font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+            Bridging clinical imaging science with deterministic AI orchestration. Open-source since 2026.
+          </p>
+        </div>
 
-  <!-- ============ CONTACT (bento: 7 + 5) ============ -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Contact</span>
-        <h2>Let's talk</h2>
-        <p>For collaborations, speaking, or a straight question about the work.</p>
-      </div>
-      <div class="bento">
-        <article class="card contact-card g7">
-          <p class="contact-sub">I reply to most messages within a couple of days. For research collaboration, a short paragraph on your side is plenty to start.</p>
-          <div class="contact-ctas">
-            <a class="btn secondary" data-mail="email" href="#contact"><span class="ic">✉</span> Email me</a>
-            <a class="btn secondary" data-mail="speaking" href="#contact"><span class="ic">🎤</span> Invite me to speak</a>
-            <a class="btn primary" data-mail="collab" href="#contact"><span class="ic">🤝</span> Propose a collaboration</a>
-          </div>
-        </article>
-        <aside class="card positions-card g5">
-          <div class="open-badge"><span class="pulse" aria-hidden="true"></span> Open to collaboration</div>
-          <ul class="why">
-            <li>Imaging-network research &amp; hospital IT case studies</li>
-            <li>Dataset partnerships for PACS / DICOM workloads</li>
-            <li>Peer review, panels, and workshop speaking</li>
+        <div>
+          <h4 class="footer-col-title">Research</h4>
+          <ul class="footer-links">
+            <li><a href="#publications" class="footer-link">Photon-Counting CT</a></li>
+            <li><a href="#publications" class="footer-link">DICOMweb Gateway</a></li>
+            <li><a href="#publications" class="footer-link">Interventional AI</a></li>
+            <li><a href="#evaluations" class="footer-link">E1-E4 Evaluation</a></li>
           </ul>
-        </aside>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="assets/CV_Mohit_Kumar.pdf" download class="footer-link">Curriculum Vitae</a></li>
+            <li><a href="https://github.com/greyentity101/dicomweb-ai-gateway" target="_blank" class="footer-link">GitHub Gateway</a></li>
+            <li><a href="https://github.com/greyentity101/photon-counting-ct" target="_blank" class="footer-link">Spectral Physics Code</a></li>
+            <li><a href="https://orcid.org/0009-0006-4312-403X" target="_blank" class="footer-link">ORCID Profile</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:mohitjat202@gmail.com" class="footer-link">Email Direct</a></li>
+            <li><a href="https://scholar.google.com/citations?view_op=list_works&hl=en&authuser=1&user=apW80LYAAAAJ" target="_blank" class="footer-link">Google Scholar</a></li>
+            <li><a href="https://github.com/greyentity101" target="_blank" class="footer-link">GitHub Profile</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Mohit Kumar. All research and code licensed under MIT.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/greyentity101" target="_blank" class="social-link" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-top">
-      <a class="brand" href="#top"><span class="brand-mark">MK</span><span class="brand-name">Mohit Kumar</span></a>
-      <span class="muted small">Healthcare IT · PACS · Networking · Imaging</span>
+  <!-- ============ COMMAND-K SEARCH MODAL DIALOG ============ -->
+  <dialog id="search-dialog" class="search-dialog" aria-label="Search Site">
+    <div class="dialog-header">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-dim);">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="search" id="search-input" class="dialog-input" placeholder="Search papers, ASICs, DICOM SR, benchmarks..." autocomplete="off" />
+      <kbd style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.4rem; border-radius: 4px; background: rgba(255,255,255,0.1); color: var(--text-dim);">ESC</kbd>
     </div>
-    <nav class="footer-links" aria-label="Footer">
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#contact">Contact</a>
-      <a href="assets/CV_Mohit_Kumar.pdf" download>CV</a>
-    </nav>
-    <p class="footer-bottom">© <span id="yr"></span> Mohit Kumar · Static HTML/CSS/JS — no server, no dependencies, no tracking.</p>
-  </div>
-</footer>
+    <div id="search-results" class="dialog-results"></div>
+  </dialog>
 
-<script src="app.js"></script>
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="blackhole.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
+
